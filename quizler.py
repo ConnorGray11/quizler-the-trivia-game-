@@ -40,7 +40,7 @@ class MainMenu(Screen):
 
 
 
-        self.btn_edit=tk.Button(self,text="Play slect",bg="blue",font=("Arial","15"))
+        self.btn_edit=tk.Button(self,text="Play select",bg="blue",font=("Arial","15"))
         self.btn_edit.grid(row=2,column=0)
 
         self.btn_search=tk.Button(self,text="Highscore", bg="blue",

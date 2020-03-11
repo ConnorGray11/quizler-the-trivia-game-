@@ -163,39 +163,64 @@ class GamesQuiz(Screen):
         Screen.__init__(self)
         
         pickle_file = open("games.pickle", "rb")
-        questions = pickle.load(pickle_file)
+        self.questions = pickle.load(pickle_file)
         pickle_file.close()        
         
-        q = random.randint(1,2)
-        self.correct_answer = questions[q][-1]
+        self.score = 0
+        self.q = random.randint(1,len(self.questions))
+        self.correct_answer = int(self.questions[self.q][5])
         self.chosen_answer = tk.IntVar(self)
         self.chosen_answer.set(0)
         
-        self.lbl_title=tk.Label(self, text = questions[q][0], font = ("Arial","20"))
-        self.lbl_title.grid(row = 0, column = 0, columnspan = 2, sticky = "news")
+        self.lbl_title=tk.Label(self, text = self.questions[self.q][0], font = ("Arial","20"))
+        self.lbl_title.grid(row = 1, column = 0, columnspan = 4, sticky = "news")
         
-        self.a1=tk.Radiobutton(self, text = questions[q][1], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 1)
-        self.a1.grid(row = 1, column = 0)
+        self.lbl_score=tk.Label(self, text = ("Score:" + str(self.score)), font = ("Arial", "20"))
+        self.lbl_score.grid(row = 0, column = 0, sticky = "news")
         
-        self.a2=tk.Radiobutton(self, text = questions[q][2], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 2)
-        self.a2.grid(row = 1, column = 1)
+        self.a1=tk.Radiobutton(self, text = self.questions[self.q][1], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 1)
+        self.a1.grid(row = 2, column = 1)
         
-        self.a3=tk.Radiobutton(self, text = questions[q][3], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 3)
-        self.a3.grid(row = 2, column = 0)
+        self.a2=tk.Radiobutton(self, text = self.questions[self.q][2], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 2)
+        self.a2.grid(row = 2, column = 2)
         
-        self.a4=tk.Radiobutton(self, text = questions[q][4], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 4)
-        self.a4.grid(row = 2, column = 1)        
+        self.a3=tk.Radiobutton(self, text = self.questions[self.q][3], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 3)
+        self.a3.grid(row = 3, column = 1)
         
-        #self.btn_give_up=tk.Button(self, text = "Give Up", bg="blue", font = ("Arial", "15"), command = self.go_main)
-        #self.btn_give_up.grid(row = 3, column = 0, columnspan = 2)        
+        self.a4=tk.Radiobutton(self, text = self.questions[self.q][4], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 4)
+        self.a4.grid(row = 3, column = 2)        
         
         self.btn_give_up=tk.Button(self, text = "Give Up", bg="blue", font = ("Arial", "15"), command = self.go_main)
-        self.btn_give_up.grid(row = 3, column = 0, columnspan = 2)
+        self.btn_give_up.grid(row = 4, column = 1)        
+        
+        self.btn_next=tk.Button(self, text = "Next", bg="blue", font = ("Arial", "15"), command = self.go_next)
+        self.btn_next.grid(row = 4, column =2)
         
     def go_main(self):
-        if self.chosen_answer == self.correct_answer:
-            Screen.current = 0
-            Screen.switch_frame()
+        #print(self.correct_answer, self.chosen_answer.get())
+        #if self.correct_answer == self.chosen_answer.get():
+        self.score=0
+        self.lbl_score.configure(text="Score:" + str(self.score))
+        Screen.current = 0
+        Screen.switch_frame()
+    
+    def go_next(self):
+        if self.correct_answer == self.chosen_answer.get():
+            self.score += 10
+            self.q = random.randint(1, len(self.questions))
+            self.lbl_score.configure(text="Score:" + str(self.score))
+            self.lbl_title.configure(text=self.questions[self.q][0])
+            self.a1.configure(text=self.questions[self.q][1])
+            self.a2.configure(text=self.questions[self.q][2])
+            self.a3.configure(text=self.questions[self.q][3])
+            self.a4.configure(text=self.questions[self.q][4])
+            self.correct_answer = self.questions[self.q][5]
+            self.update
+        else:
+            self.score -= 5
+            self.lbl_score.configure(text=self.score)
+            self.update
+    #def randomize(self, ls):
         
     #def answer_sumbit(self, choice):
         
@@ -224,4 +249,4 @@ if __name__ == "__main__":
     Screen.current=0
     Screen.switch_frame()     
     
-    root.mainloop() 
+    root.mainloop()  

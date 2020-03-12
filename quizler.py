@@ -421,7 +421,7 @@ class GeoQuiz(Screen):
     def __init__(self):
         Screen.__init__(self)
         
-        pickle_file = open("Geo.pickle", "rb")
+        pickle_file = open("geo.pickle", "rb")
         self.questions = pickle.load(pickle_file)
         pickle_file.close()        
         

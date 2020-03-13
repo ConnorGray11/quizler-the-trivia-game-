@@ -68,7 +68,7 @@ class PlaySelect(Screen):
         self.lbl_title.grid(row = 0, column = 1, sticky = "news")
         
         
-        self.btn_random = tk.Button(self, text = "Random", bg="blue", font = ("Arial", "15"))
+        self.btn_random = tk.Button(self, text = "Random", bg="blue", font = ("Arial", "15"),command= self.go_random)
         self.btn_random.grid(row = 1, column = 1)
         
         self.btn_history = tk.Button(self, text = "History", bg="blue", font = ("Arial", "15"),command = self.go_history)
@@ -104,7 +104,11 @@ class PlaySelect(Screen):
         
     def go_geo(self):        
         Screen.current = 7
-        Screen.switch_frame()        
+        Screen.switch_frame()  
+        
+    def go_random(self):        
+        Screen.current = 8
+        Screen.switch_frame()          
             
 class NewSelect(Screen):
     def __init__(self):
@@ -176,7 +180,7 @@ class GamesQuiz(Screen):
         
         pickle_file = open("games.pickle", "rb")
         self.questions = pickle.load(pickle_file)
-        pickle_file.close()        
+        pickle_file.close()            
         
         self.score = 0
         self.question_numb = 1
@@ -226,7 +230,7 @@ class GamesQuiz(Screen):
         if self.correct_answer == self.chosen_answer.get():
             self.score += 10
             self.question_numb += 1
-            if self.question_numb <= 10:
+            if self.question_numb <= 11:
                 while self.q in self.used_questions:
                     self.q = random.randint(1, len(self.questions))
                 self.used_questions.append(self.q)
@@ -240,7 +244,12 @@ class GamesQuiz(Screen):
                 self.correct_answer = self.questions[self.q][5]
                 self.update
                 
-            if self.question_numb == 10: 
+            if self.question_numb == 11: 
+                #score_file = open("score.pickle", "rb")
+                #self.scores = pickle.load(score_file)
+                #score_file.close()
+                #self.scores.append(self.score)
+                #print(self.scores)
                 Screen.current = 0
                 Screen.switch_frame()                
                 
@@ -308,7 +317,7 @@ class MusicQuiz(Screen):
         if self.correct_answer == self.chosen_answer.get():
             self.score += 10
             self.question_numb += 1
-            if self.question_numb <= 10:
+            if self.question_numb <= 11:
                 while self.q in self.used_questions:
                     self.q = random.randint(1, len(self.questions))
                 self.used_questions.append(self.q)
@@ -322,7 +331,7 @@ class MusicQuiz(Screen):
                 self.correct_answer = self.questions[self.q][5]
                 self.update
                 
-            if self.question_numb == 10: 
+            if self.question_numb == 11: 
                 Screen.current = 0
                 Screen.switch_frame()                
                 
@@ -392,7 +401,7 @@ class HistoryQuiz(Screen):
         if self.correct_answer == self.chosen_answer.get():
             self.score += 10
             self.question_numb += 1
-            if self.question_numb <= 10:
+            if self.question_numb <= 11:
                 while self.q in self.used_questions:
                     self.q = random.randint(1, len(self.questions))
                 self.used_questions.append(self.q)
@@ -406,7 +415,7 @@ class HistoryQuiz(Screen):
                 self.correct_answer = self.questions[self.q][5]
                 self.update
                 
-            if self.question_numb == 10: 
+            if self.question_numb == 11: 
                 Screen.current = 0
                 Screen.switch_frame()                
                 
@@ -473,7 +482,7 @@ class GeoQuiz(Screen):
         if self.correct_answer == self.chosen_answer.get():
             self.score += 10
             self.question_numb += 1
-            if self.question_numb <= 10:
+            if self.question_numb <= 11:
                 while self.q in self.used_questions:
                     self.q = random.randint(1, len(self.questions))
                 self.used_questions.append(self.q)
@@ -487,7 +496,7 @@ class GeoQuiz(Screen):
                 self.correct_answer = self.questions[self.q][5]
                 self.update
                 
-            if self.question_numb == 10: 
+            if self.question_numb == 11: 
                 Screen.current = 0
                 Screen.switch_frame()                
                 
@@ -495,6 +504,86 @@ class GeoQuiz(Screen):
             self.score -= 5
             self.lbl_score.configure(text="Score:" + str(self.score))
             self.update    
+            
+
+class RandomQuiz(Screen):
+    def __init__(self):
+        Screen.__init__(self)
+        
+        pickle_file = open("random.pickle", "rb")
+        self.questions = pickle.load(pickle_file)
+        pickle_file.close()        
+        
+        self.score = 0
+        self.question_numb = 1
+        self.used_questions = list()
+        self.q = random.randint(1,len(self.questions))
+        self.used_questions.append(self.q)
+        self.correct_answer = int(self.questions[self.q][5])
+        self.chosen_answer = tk.IntVar(self)
+        self.chosen_answer.set(0)
+        
+        self.lbl_title=tk.Label(self, text = self.questions[self.q][0], font = ("Arial","20"))
+        self.lbl_title.grid(row = 1, column = 0, columnspan = 4, sticky = "news")
+        
+        self.lbl_score=tk.Label(self, text = ("Score:" + str(self.score)), font = ("Arial", "20"))
+        self.lbl_score.grid(row = 0, column = 3, sticky = "news")
+        
+        self.lbl_question_num=tk.Label(self, text = ("Question:" + str(self.question_numb)), font = ("Arial", "20"))
+        self.lbl_question_num.grid(row = 0, column = 0, sticky = "news")        
+        
+        self.a1=tk.Radiobutton(self, text = self.questions[self.q][1], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 1)
+        self.a1.grid(row = 2, column = 1)
+        
+        self.a2=tk.Radiobutton(self, text = self.questions[self.q][2], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 2)
+        self.a2.grid(row = 2, column = 2)
+        
+        self.a3=tk.Radiobutton(self, text = self.questions[self.q][3], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 3)
+        self.a3.grid(row = 3, column = 1)
+        
+        self.a4=tk.Radiobutton(self, text = self.questions[self.q][4], bg="blue", font = ("Arial", "15"), variable = self.chosen_answer,value = 4)
+        self.a4.grid(row = 3, column = 2)        
+        
+        self.btn_give_up=tk.Button(self, text = "Give Up", bg="blue", font = ("Arial", "15"), command = self.go_main)
+        self.btn_give_up.grid(row = 4, column = 1)        
+        
+        self.btn_next=tk.Button(self, text = "Next", bg="blue", font = ("Arial", "15"), command = self.go_next)
+        self.btn_next.grid(row = 4, column =2)
+        
+    def go_main(self):
+        #print(self.correct_answer, self.chosen_answer.get())
+        #if self.correct_answer == self.chosen_answer.get():
+        self.score=0
+        self.lbl_score.configure(text="Score:" + str(self.score))
+        Screen.current = 0
+        Screen.switch_frame()
+    
+    def go_next(self):
+        if self.correct_answer == self.chosen_answer.get():
+            self.score += 10
+            self.question_numb += 1
+            if self.question_numb <= 11:
+                while self.q in self.used_questions:
+                    self.q = random.randint(1, len(self.questions))
+                self.used_questions.append(self.q)
+                self.lbl_score.configure(text="Score:" + str(self.score))
+                self.lbl_question_num.configure(text="Question:"+str(self.question_numb))
+                self.lbl_title.configure(text=self.questions[self.q][0])
+                self.a1.configure(text=self.questions[self.q][1])
+                self.a2.configure(text=self.questions[self.q][2])
+                self.a3.configure(text=self.questions[self.q][3])
+                self.a4.configure(text=self.questions[self.q][4])
+                self.correct_answer = self.questions[self.q][5]
+                self.update
+                
+            if self.question_numb == 11: 
+                Screen.current = 0
+                Screen.switch_frame()                
+                
+        else:
+            self.score -= 5
+            self.lbl_score.configure(text="Score:" + str(self.score))
+            self.update                
                     
         
 if __name__ == "__main__":
@@ -514,6 +603,7 @@ if __name__ == "__main__":
     screens.append(MusicQuiz())
     screens.append(HistoryQuiz())
     screens.append(GeoQuiz())
+    screens.append(RandomQuiz())
     
     screens[0].grid(row=0, column=0,sticky="news")
     screens[1].grid(row=0, column=0,sticky="news")
@@ -523,6 +613,7 @@ if __name__ == "__main__":
     screens[5].grid(row=0, column=0,sticky="news")
     screens[6].grid(row=0, column=0,sticky="news")
     screens[7].grid(row=0, column=0,sticky="news")
+    screens[8].grid(row=0, column=0,sticky="news")
     
     Screen.current=0
     Screen.switch_frame()     

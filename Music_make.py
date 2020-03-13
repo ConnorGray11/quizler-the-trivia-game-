@@ -11,7 +11,31 @@ Questions = {1:["What is the highest note on a baseline piano?", "B7", "C8", "G2
              9:[" How many different instruments did Prince play on his debut album?", "27","17",  "31", "26", 1],
              10:["What 1985 charity single sold more than 20 million copies?", "Candle in the wind","we are the world",  "Thats what friends are for", "Do they know its christmas", 2],
              11:["Who was The Number one Jazz Musican", "Billie Holiday","Nat King Cole",  "Lena Horne", "Louis Armstrong", 4],
-             12:["How many tonnes of bells are in the world's largest Carillon?", "123","78",  "91", "212", 3],}
+             12:["How many tonnes of bells are in the world's largest Carillon?", "123","78",  "91", "212", 3],
+             13:["What is the minimum  number of musicians a band must have to be considered a big band?", "12", "10", "9", "7", 2],
+             14:["What musical instrument's sales escalated from 228,000 in 1950 to 2.3 million in 1971?", "pianos", "violins", "drums", "guitars", 4], 
+             15:["What legendary soul singer wrecked his Corvette the first time he drove it?", "Michael Jackson", "Frank Sinatra", "Ray Charles", "prince", 3],
+             16:["What patriotic song was originally titled The Defense of Fort McHenry?", "Prais the lord and pass the ammunition", "The continental army", "The liberty song", "The star spangled banner", 4],
+             17:["What city's opera house does  The Phantom of the Opera prowl?", "Paris","Rome",  "London", "Berlin", 1],
+             18:["Boasting a guest verse by Dr.Dre what classic 90's R&B hit features blackstreet singing 'i like the way you work it'?", "a fair ammount of Diggity", "hardly any Diggity", "An overwhelming amount of Diggity", "No Diggity", 4], 
+             19:["Which US artist is known as the King of Pop?", "Prince","Michael Jackson",  "Elvis Presley", "Lee Aaron", 2],
+             20:["Who recorded, in 1988, ‘Don’t worry, be happy’?", "Alice Cooper","Dr. Dre",  "Bobby McFerrin", "Alan Freed", 3], 
+             21:["In which year did Michael Jackson die?", "2009","2006",  "2008", "2011", 1],
+             22:["Rap music originated in what country?", "Great Britain","USA",  "Japan", "Mexico", 2],
+             23:["‘The Man in Black’ was the nickname of which country singer?", "Johnny Logan","Sammy Hagar",  "Red Foley", "Johnny Cash", 4],
+             24:["What colour was The Beatles’ submarine?", "Blue","Red",  "Yellow", "Purple", 3],
+             25:["Which member of the Spice Girls was famous famous for her Union Jack dress?", "Emma Bunton", "Geri Halliwell", "Melanie C", "Victoria Beckham", 2],
+             26:["What musical instrument's sales escalated from 228,000 in 1950 to 2.3 million in 1971?", "pianos", "violins", "drums", "guitars", 4], 
+             27:["What legendary soul singer wrecked his Corvette the first time he drove it?", "Michael Jackson", "Frank Sinatra", "Ray Charles", "prince", 3],
+             28:["What patriotic song was originally titled The Defense of Fort McHenry?", "Prais the lord and pass the ammunition", "The continental army", "The liberty song", "The star spangled banner", 4],
+             29:["What city's opera house does  The Phantom of the Opera prowl?", "Paris","Rome",  "London", "Berlin", 1],
+             30:["Boasting a guest verse by Dr.Dre what classic 90's R&B hit features blackstreet singing 'i like the way you work it'?", "a fair ammount of Diggity", "hardly any Diggity", "An overwhelming amount of Diggity", "No Diggity", 4], 
+             31:["Which US artist is known as the King of Pop?", "Prince","Michael Jackson",  "Elvis Presley", "Lee Aaron", 2],
+             32:["Who recorded, in 1988, ‘Don’t worry, be happy’?", "Alice Cooper","Dr. Dre",  "Bobby McFerrin", "Alan Freed", 3], 
+             33:["In which year did Michael Jackson die?", "2009","2006",  "2008", "2011", 1],
+             34:["Rap music originated in what country?", "Great Britain","USA",  "Japan", "Mexico", 2],
+             35:["‘The Man in Black’ was the nickname of which country singer?", "Johnny Logan","Sammy Hagar",  "Red Foley", "Johnny Cash", 4],
+             36:["What colour was The Beatles’ submarine?", "Blue","Red",  "Yellow", "Purple", 3],}
 
 music = open("music.pickle","wb")
 pickle.dump(Questions, music)

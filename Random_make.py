@@ -1,9 +1,55 @@
 import pickle
 
-games = {1:['FPS','Halo 3','Bungie','Microsoft','Xbox','2007','10','either','30.00','yes','1/15/2008','good game yee'],
-2:['RTS','Halo Wars','Bungie','Microsoft','Xbox','2009','10','either','20.00','yes','6/20/2009','loved the art style']}
+Questions = {1:["What is the highest note on a baseline piano?", "B7", "C8", "G2", "A1", 2],
+             2:["When was Daft Punks first album released?", "2000", "1999", "1995", "1997", 4], 
+             3:["What Depeche Mode song was inspired by Priscilla Presley's book Elvis and Me?", "Strangelove", "World in my eyes", "Personal Jesus", "sweetest Perfection", 3],
+             4:["What instrument do you play without touching it?", "Sitar", "Harp", "synthesizer", "theremin", 4],
+             5:["How much pressure do all the strings combined within a grand piano exert on the frame?", "30 tons","300 tons",  "3 tons", "300 lbs", 1],
+             6:["What is the oldest surviving musical instrument?", "Drum", "didgeridoo", "Lyre", "Flute", 4], 
+             7:["Which jazz musician was known for playing a bent trumpet?", "Chet Baker","Dizzy Gillespie",  "Miles Davis", "Louis Armstrong", 2],
+             8:["What note is the lowest string on a bass guitar most commonly tuned to?", "G3","F4",  "E2", "B2", 3], 
+             9:[" How many different instruments did Prince play on his debut album?", "27","17",  "31", "26", 1],
+             10:["What 1985 charity single sold more than 20 million copies?", "Candle in the wind","we are the world",  "Thats what friends are for", "Do they know its christmas", 2],
+             11:["Who was The Number one Jazz Musican", "Billie Holiday","Nat King Cole",  "Lena Horne", "Louis Armstrong", 4],
+             12:["How many tonnes of bells are in the world's largest Carillon?", "123","78",  "91", "212", 3],
+             13:["how long did it take for poland to be annexed at the start of world war two?", "12 days", "35 days", "30 days", "60 days", 2],
+             14:["How long did the longest war last?", "154 years", "57 years", "409 years", "335", 4], 
+             15:["Who's death caused the first world war?", "Gavrillo Princep", "Otto Von Bismark", "Franz Ferdinand", "Dwight D. Eisenhower", 3],
+             16:["What Objest Allowed for us to understand ancient egyptian?", "Rock of gibraltr", "The Blarney stone", "Ayer's Rock", "The Rosetta stone", 4],
+             17:["Who was the first democratically elected President of Russia?", "Boris Yeltsin","Joseph Stalin",  "Vladimir Putin", "August Poniatowski", 1],
+             18:["Which of the following empires had no written language?", "Roman Empire", "Aztec Empire", "Tang Dynasty", "Incan Empire", 4], 
+             19:["When was the first crusade called?", "1765","1095",  "917", "1117", 2],
+             20:["Who kiled Julius Caesar?", "Romulus And Remus","Brutus and Cassius",  "Augustus and Antony", "Gaius Octavius and Lepidus", 2], 
+             21:["What famous general was once attacked by rabbits", "Hannibal","Julius Caesar",  "Napoleon", "Patton", 3],
+             22:["Who was Germany's first woman Chancellor?", "Hanna Reitsch.","Angela Merkel",  "janet Yellen", "Maria Baum", 2],
+             23:["During the Summer of Love, where did hippies converge?", "Chicago","St.louis",  "New York", "San Francisco", 4],
+             24:["What were the two major powers of the cold war", "China and Canada","Russia and Britain",  "United states and Russia", "United states and Vietnam", 3],
+             25:["What is the main character of Halo?", "Private Pile", "Master Chief", "Frost", "Soap", 2],
+             26:["Which pokemon has no type disadvantage?", "Dugtrio", "Shuckle", "Tepig", "Eelectros", 4], 
+             27:["What are the professions of Mario and his brother Luigi?", "Teachers", "Exterminators", "Plumbers", "Zookeepers", 3],
+             28:["In which of these countries did the Nintendo Wii NOT come bundled with a copy of Wii Sports?", "South Korea", "Russia", "Canada", "Japan", 4],
+             29:["What Board game helped POW's escape during WW2", "Monopoly","Chutes and Latters",  "Battleship", "Candy land", 1],
+             30:["What country is tetris from", "North Korea", "Kenya", "Ireland", "Russia", 4], 
+             31:["In which game can you find dog meat in cake of broken dreams", "Star wars:KOTOR","Fallout 2",  "Final Fantasy", "EarthBound", 2],
+             32:["What does Atari mean", "Winner","Best",  "Success", "Revolution", 3], 
+             33:["When was minecraft released", "2009","1998",  "2006", "2016", 1],
+             34:["Who was the enemy in Homefront", "The U.S Govt","The Korean army",  "Space Nazis", "Aliens", 2],
+             35:["What game is the character master hands portayed in", "Halo","Call of duty",  "Street Fighter", "Smash", 4],
+             36:["In the metal gear series who is Liquid snakes brother", "Snakeus Wakeus","Ho Chi Minh",  "Solid Snake", "Zoidberg", 3],
+             37:["What country has the most natural lakes?", "United States", "Canada", "Brazil", "India", 2],
+             38:["What is the driest place on Earth?", "Egypt", "Libya", "Saraha Desert", "Antarctica", 4], 
+             39:["Which African nation has the most pyramids?", "Algeria", "Nigeria", "Sudan", "Egypt", 3],
+             40:["What is the oldest city in the world?", "Athens", "Jerusalem", "Jericho", "Damascus", 4],
+             41:["Which U.S. state has the most active volcanoes?", "Alaska", "California", "Hawaii", "Florida", 1],
+             42:["Which country has the most coastline?", "Russia", "Australia", "United States", "Canada", 4], 
+             43:["What is the capital of Australia?", "Perth", "Canberra", "Melbourne", "Sydney", 2],
+             44:["What U.S. state shares borders with Louisiana, Arkansas, Oklahoma, and New Mexico?", "Missouri", "Wyoming", "Texas", "Colorado", 3], 
+             45:["Which continent has land in all four hemispheres?", "Africa", "Asia", "North America", "South America", 1],
+             46:["What mountain is closest to the moon?", "Mount Pandim", "Mount CHimborazo", "Mount Rushmore", "Mount Everest", 2],
+             47:["What is the largest city in the world based on surface area?", "Mexico City", "Tokyo", "New York City", "Hulunbuir", 4],
+             48:["Which Hawaiian island is unhinhabited?", "Coconut Island", "Molokai", "Kaho'olawe", "Niihau", 3],}
 
-data_file = open("game_lib.pickle","wb")
-pickle.dump(games, data_file)
+data_file = open("random.pickle","wb")
+pickle.dump(Questions, data_file)
 data_file.close
 
